@@ -7,52 +7,55 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #343a40;
-            padding: 20px;
+            padding: 10px;
             color: #f8f9fa;
         }
-        .input-field {
-            margin: 20px 0;
+        .input-field, .button-field { /* Добавляем новый класс для кнопок */
+            margin: 10px 0;
             background-color: #fff;
             border-radius: 5px;
-            padding: 20px;
+            padding: 10px;
             box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         label {
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             font-weight: bold;
-            font-size: 1.2em;
+            font-size: 1em;
             color: #adb5bd;
         }
         input[type="number"] {
             width: 100%;
-            padding: 15px;
+            padding: 10px;
             box-sizing: border-box;
             border-radius: 5px;
             border: 2px solid #ccc;
-            font-size: 1.1em;
+            font-size: 1em; /* Уменьшаем размер шрифта */
             color: #343a40;
             background-color: #f8f9fa;
         }
         button {
             display: block;
             width: 100%;
-            padding: 15px;
-            margin-top: 20px;
+            padding: 10px; /* Уменьшаем отступ */
+            margin-top: 10px; /* Уменьшаем отступ */
             color: white;
             background-color: #007bff;
             border: none;
             border-radius: 25px;
             cursor: pointer;
             box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-            font-size: 1.2em;
+            font-size: 1em; /* Уменьшаем размер шрифта */
         }
         button:hover {
             background-color: #0056b3;
         }
         h1, h2 {
             text-align: center;
-            font-size: 2em;
+            font-size: 1.5em; /* Уменьшаем размер шрифта */
             color: #f8f9fa;
         }
     </style>
@@ -71,7 +74,13 @@
     <label for="x_prime">Начальная координата материальной точки x<sub>0</sub>' (м):</label>
     <input type="number" id="x_prime" placeholder="Введите начальную координату материальной точки в системе отсчета" style="color: #343a40;">
 </div>
-<button onclick="calculate()">Рассчитать v и x</button>
+<div class="button-field"> <!-- Используем новый класс для кнопок -->
+    <button onclick="calculate()">Рассчитать v и x</button>
+</div>
+<div class="input-field">
+    <label for="V2">Скорость системы отсчета V (м/с):</label>
+    <input type="number" id="V2" placeholder="Введите скорость системы отсчета" style="color: #343a40;">
+</div>
 <div class="input-field">
     <label for="v">Скорость материальной точки v (м/с):</label>
     <input type="number" id="v" placeholder="Введите скорость материальной точки" style="color: #343a40;">
@@ -80,7 +89,9 @@
     <label for="x">Координата материальной точки x (м):</label>
     <input type="number" id="x" placeholder="Введите координату материальной точки" style="color: #343a40;">
 </div>
-<button onclick="calculatePrime()">Рассчитать v' и x'</button>
+<div class="button-field"> <!-- Используем новый класс для кнопок -->
+    <button onclick="calculatePrime()">Рассчитать v' и x'</button>
+</div>
 <h2 id="output"></h2>
 
 <script src="simulation.js"></script>
