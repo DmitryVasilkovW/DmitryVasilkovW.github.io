@@ -22,7 +22,7 @@ function calculate() {
     }
 
     if (isNaN(t_prime)) {
-        alert("Пожалуйста, введите значение для времени t' (с).");
+        alert("Пожалуйста, введите значение для времени t (с).");
         return;
     }
 
@@ -32,7 +32,7 @@ function calculate() {
     }
 
     const v = V + v_prime;
-    const x = x_prime + V * t_prime;
+    const x = x_prime + v * t_prime;
     const t = t_prime;
 
     document.getElementById('output').innerHTML = 'Скорость v: ' + v.toFixed(2) + ' м/с, Координата x: ' + x.toFixed(2) + ' м, Время t: ' + t.toFixed(2) + ' с';
@@ -70,8 +70,8 @@ function calculatePrime() {
     }
 
     const v_prime = v - V;
-    const x_prime = x - V * t;
+    const x_prime = x - v * t;
     const t_prime = t;
 
-    document.getElementById('output').innerHTML = "Скорость v': " + v_prime.toFixed(2) + " м/с, Координата x<sub>0</sub>': " + x_prime.toFixed(2) + " м, Время t': " + t_prime.toFixed(2) + " с";
+    document.getElementById('output').innerHTML = "Скорость v': " + v_prime.toFixed(2) + " м/с, Координата x<sub>0</sub>': " + x_prime.toFixed(2) + " м, Время t: " + t_prime.toFixed(2) + " с";
 }
