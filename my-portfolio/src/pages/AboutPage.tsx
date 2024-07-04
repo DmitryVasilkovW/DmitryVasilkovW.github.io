@@ -1,15 +1,39 @@
-// src/pages/AboutPage.tsx
 import React from 'react';
+import '../styles/About.css'
 
 interface AboutPageProps {
-    language: string;
+    title: string,
+    intro: string,
+    professional: string,
+    skills: string,
+    skillsList: string[],
+    personal: string,
+    contact: string
 }
 
-const AboutPage: React.FC<AboutPageProps> = ({ language }) => {
+const AboutPage: React.FC<AboutPageProps> = ({title, intro, professional, skills, skillsList, personal, contact }) => {
     return (
-        <div>
-            <h1>{language === 'en' ? 'About Me' : 'Обо мне'}</h1>
-            <p>{language === 'en' ? 'This is the about page.' : 'Это страница обо мне.'}</p>
+        <div className="about-page">
+            <h1 className= "title">{title}</h1>
+            <p className= "intro">{intro}</p>
+            <section className= "professional">
+                <h2>{professional}</h2>
+                <p>{professional}</p>
+            </section>
+            <section className= "skills">
+                <h2>{skills}</h2>
+                <ul className="skills-list">
+                    {skillsList.map(skill => <li key={skill}>{skill}</li>)}
+                </ul>
+            </section>
+            <section className= "personal">
+                <h2>{personal}</h2>
+                <p>{personal}</p>
+            </section>
+            <section className="contact">
+                <h2>{contact}</h2>
+                <p>{contact}</p>
+            </section>
         </div>
     );
 };

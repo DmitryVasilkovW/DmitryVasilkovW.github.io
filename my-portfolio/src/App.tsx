@@ -1,7 +1,8 @@
 // src/App.tsx
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { translations } from './translations';
+import { translations } from './translations/translations';
+import { aboutTranslations } from "./translations/pages/aboutTranslations";
 import LanguageSelector from './components/LanguageSelector';
 import Page from './components/Page';
 import AboutPage from "./pages/AboutPage";
@@ -40,7 +41,17 @@ const App: React.FC = () => {
                                 content={translations[language]['about-text']}
                             />
                         }/>
-                        <Route path="/about" element={<AboutPage language={language}/>}/>
+                        <Route path="/about" element={
+                            <AboutPage
+                                title={aboutTranslations[language]['title']}
+                                intro={aboutTranslations[language]['intro']}
+                                professional={aboutTranslations[language]['professional']}
+                                skills={aboutTranslations[language]['skills']}
+                                skillsList={aboutTranslations[language]['skillsList']}
+                                personal={aboutTranslations[language]['personal']}
+                                contact={aboutTranslations[language]['contact']}
+                            />
+                        }/>
                         {/*<Route path="/projects" element={<ProjectsPage language={language}/>}/>*/}
                         {/*<Route path="/contact" element={<ContactPage language={language}/>}/>*/}
                     </Routes>

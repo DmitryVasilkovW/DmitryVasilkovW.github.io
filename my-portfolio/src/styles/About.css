@@ -1,0 +1,71 @@
+.about-page {
+    font-family: 'Arial', sans-serif;
+    padding: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    font-size: 3.5em;
+    margin-bottom: 0.5em;
+    color: #333;
+    text-align: center;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.intro {
+    margin-bottom: 2em;
+    line-height: 1.8;
+    text-align: center;
+    color: #555;
+}
+
+.professional {
+    font-size: 1.3em;
+    margin-bottom: 1em;
+    color: #007bff;
+    text-align: center;
+}
+
+.skills {
+    margin-bottom: 2em;
+}
+
+.skills-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.skills-list li {
+    margin-bottom: 0.8em;
+    color: #666;
+}
+
+.personal {
+    margin-bottom: 2em;
+}
+
+.contact {
+    margin-bottom: 2em;
+}
+
+.contact h2 {
+    color: #28a745;
+    font-size: 1.8em;
+    margin-bottom: 0.5em;
+}
+
+.contact p {
+    color: #6c757d;
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+    .title {
+        font-size: 2.8em;
+    }
+}
