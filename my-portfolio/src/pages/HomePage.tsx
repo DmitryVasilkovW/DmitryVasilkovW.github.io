@@ -1,4 +1,3 @@
-// src/components/Page.tsx
 import React from 'react';
 
 interface Props {
@@ -6,7 +5,7 @@ interface Props {
     content: string;
 }
 
-const Page: React.FC<Props> = ({ title, content }) => {
+const HomePage: React.FC<Props> = ({ title, content }) => {
     return (
         <section>
             <h2>{title}</h2>
@@ -15,4 +14,4 @@ const Page: React.FC<Props> = ({ title, content }) => {
     );
 };
 
-export default Page;
+export default HomePage;

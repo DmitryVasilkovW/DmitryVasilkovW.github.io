@@ -1,4 +1,3 @@
-// src/translations.ts
 interface Translations {
     [key: string]: {
         home: string;
