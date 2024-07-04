@@ -1,0 +1,47 @@
+.language-selector {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: inline-block;
+}
+
+.language-selector button {
+    padding: 5px 10px;
+    font-size: 0.8em;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.language-selector button:hover {
+    background-color: #555;
+}
+
+.language-selector .dropdown {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin-top: 5px;
+    z-index: 1000;
+    list-style-type: none;
+    padding: 0;
+    min-width: 100px;
+}
+
+.language-selector .dropdown li {
+    padding: 5px 10px;
+    font-size: 0.8em;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.language-selector .dropdown li:hover {
+    background-color: #f0f2f5;
+}

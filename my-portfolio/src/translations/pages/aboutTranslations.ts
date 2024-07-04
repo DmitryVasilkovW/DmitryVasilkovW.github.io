@@ -5,44 +5,72 @@ interface AboutTranslations {
         professional: string,
         skills: string,
         skillsList: string[],
+        "personal-title" : string,
         personal: string,
-        contact: string
     };
 }
 
 const aboutTranslations: AboutTranslations = {
     en: {
         title: "About Me",
-        intro: "Hi, I'm Dmitry Vasilkov, a passionate web developer.",
-        professional: "With over 5 years of experience in the field, I've honed my skills in creating dynamic and responsive web applications. My journey started with a fascination for technology, which led me to pursue a degree in Computer Science. Since then, I've worked on numerous projects that have challenged and expanded my knowledge.",
+        intro: "Hi, I'm Dmitry Vasilkov, backend developer.",
+        professional: "My fascination with technology has always pushed me to explore its transformative potential." +
+        "its transformative potential. Studying Information Systems and Technologies at ITMO," +
+        "I am constantly striving to improve my knowledge and skills. I am ready to invest all my efforts and time," +
+        "to maximize my development in the field of backend development.",
         skills: "Skills & Expertise",
         skillsList: [
-            "JavaScript & TypeScript",
-            "React & Redux",
-            "Node.js & Express",
-            "HTML5 & CSS3",
-            "Responsive Design",
-            "Git & Version Control"
+            "PostgreSQL",
+            "Docker",
+            "Room",
+            "Linux",
+            "C# (high level, familiar with Microsoft Dependency Injection)",
+            "Java (Hibernate, Spring, Spring Boot, Spring Security, JavaFX, Mockito, Kafka)",
+            "Scala (tic-tac-toe game development)",
+            "Kotlin (To Do List application development)",
+            "Swift (working with the MacOS file system)",
+            "AppleScript и Shell (development of scripts for working with the file system, use of shell within the framework of the discipline 'Operating Systems')",
+            "Go (software development for smart home hub)",
+            "Design patterns",
+            "SOLID, GRASP, DRY, KISS and YAGNI principles",
+            "Algorithms and data structures",
+            "Architectures for programming",
+            "Maven and Gradle"
         ],
-        personal: "When I'm not coding, I enjoy hiking, playing chess, and exploring new technologies. I believe in continuous learning and am always looking for new challenges to tackle.",
-        contact: "Feel free to reach out to me via email at dmitry@example.com or connect with me on LinkedIn."
+        "personal-title":"hobby",
+        personal: "When I'm not writing code, I'm interested in painting, the art of medieval weaponry, and technology.",
     },
     ru: {
-        title: "Обо мне",
-        intro: "Привет, я Дмитрий Васильков, увлеченный веб-разработчик.",
-        professional: "С более чем 5-летним опытом работы в этой области, я отточил свои навыки в создании динамических и адаптивных веб-приложений. Мое путешествие началось с увлечения технологиями, что привело меня к получению степени в области информатики. С тех пор я работал над многочисленными проектами, которые бросали вызов и расширяли мои знания.",
-        skills: "Навыки и опыт",
-        skillsList: [
-            "JavaScript и TypeScript",
-            "React и Redux",
-            "Node.js и Express",
-            "HTML5 и CSS3",
-            "Адаптивный дизайн",
-            "Git и контроль версий"
+        "title": "Обо мне",
+        "intro": "Привет, я Дмитрий Васильков, бэкенд-разработчик.",
+        "skills": "Навыки и опыт",
+        "professional": "Мое увлечение технологиями всегда подталкивало меня к изучению" +
+            " их трансформационного потенциала. Обучаясь в ИТМО на направлении 'Информационные системы и технологии'," +
+            " я постоянно стремлюсь к совершенствованию своих знаний и навыков. Я готов вкладывать все свои усилия и время," +
+            " чтобы максимально развиваться в области бэкенд-разработки.",
+        "skillsList": [
+            "PostgreSQL",
+            "Docker",
+            "Room",
+            "Linux",
+            "C# (высокий уровень, знаком с Microsoft Dependency Injection)",
+            "Java (Hibernate, Spring, Spring Boot, Spring Security, JavaFX, Mockito, Kafka)",
+            "Scala (разработка игры крестики-нолики)",
+            "Kotlin (разработка приложения To Do List)",
+            "Swift (работа с файловой системой MacOS)",
+            "AppleScript и Shell (разработка скриптов для работы с файловой системой, использование shell в рамках дисциплины 'Операционные системы')",
+            "Go (разработка ПО для хаба умного дома)",
+            "Паттерны проектирования",
+            "Принципы SOLID, GRASP, DRY, KISS и YAGNI",
+            "Алгоритмы и структуры данных",
+            "Архитектуры программирования",
+            "Maven и Gradle"
         ],
-        personal: "Когда я не пишу код, я люблю ходить в походы, играть в шахматы и изучать новые технологии. Я верю в непрерывное обучение и всегда ищу новые вызовы для решения.",
-        contact: "Свяжитесь со мной по электронной почте dmitry@example.com или добавьте меня в LinkedIn."
+        "personal-title":"хобби",
+        "personal": "Когда я не пишу код, я интересуюсь живописью, искусством изготовления средневекового оружия и техникой.",
     }
+
+
 };
 
 export { aboutTranslations };

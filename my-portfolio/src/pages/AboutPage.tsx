@@ -8,16 +8,22 @@ interface AboutPageProps {
     skills: string,
     skillsList: string[],
     personal: string,
-    contact: string
+    personalTitle: string,
 }
 
-const AboutPage: React.FC<AboutPageProps> = ({title, intro, professional, skills, skillsList, personal, contact }) => {
+const AboutPage: React.FC<AboutPageProps> = ({
+                                                 title,
+                                                 intro,
+                                                 professional,
+                                                 skills,
+                                                 skillsList,
+                                                 personal,
+                                                 personalTitle}) => {
     return (
         <div className="about-page">
             <h1 className= "title">{title}</h1>
             <p className= "intro">{intro}</p>
             <section className= "professional">
-                <h2>{professional}</h2>
                 <p>{professional}</p>
             </section>
             <section className= "skills">
@@ -27,12 +33,8 @@ const AboutPage: React.FC<AboutPageProps> = ({title, intro, professional, skills
                 </ul>
             </section>
             <section className= "personal">
-                <h2>{personal}</h2>
+                <h2>{personalTitle}</h2>
                 <p>{personal}</p>
-            </section>
-            <section className="contact">
-                <h2>{contact}</h2>
-                <p>{contact}</p>
             </section>
         </div>
     );
