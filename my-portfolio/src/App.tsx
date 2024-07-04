@@ -1,8 +1,10 @@
 // src/App.tsx
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { translations } from './translations';
 import LanguageSelector from './components/LanguageSelector';
 import Page from './components/Page';
+import AboutPage from "./pages/AboutPage";
 
 const App: React.FC = () => {
     const [language, setLanguage] = useState<string>('en');
@@ -17,25 +19,34 @@ const App: React.FC = () => {
     }, [language]);
 
     return (
-        <div>
-            <header>
-                <nav>
-                    <ul>
-                        <li>{translations[language].home}</li>
-                        <li>{translations[language].about}</li>
-                        <li>{translations[language].projects}</li>
-                        <li>{translations[language].contact}</li>
-                    </ul>
-                    <LanguageSelector setLanguage={setLanguage} />
-                </nav>
-            </header>
-            <main>
-                <Page
-                    title={translations[language]['about-title']}
-                    content={translations[language]['about-text']}
-                />
-            </main>
-        </div>
+        <Router>
+            <div>
+                <header>
+                    <nav>
+                        <ul>
+                            <li><Link to="/">{translations[language].home}</Link></li>
+                            <li><Link to="/about">{translations[language].about}</Link></li>
+                            <li><Link to="/projects">{translations[language].projects}</Link></li>
+                            <li><Link to="/contact">{translations[language].contact}</Link></li>
+                        </ul>
+                        <LanguageSelector setLanguage={setLanguage}/>
+                    </nav>
+                </header>
+                <main>
+                    <Routes>
+                        <Route path="/" element={
+                            <Page
+                                title={translations[language]['about-title']}
+                                content={translations[language]['about-text']}
+                            />
+                        }/>
+                        <Route path="/about" element={<AboutPage language={language}/>}/>
+                        {/*<Route path="/projects" element={<ProjectsPage language={language}/>}/>*/}
+                        {/*<Route path="/contact" element={<ContactPage language={language}/>}/>*/}
+                    </Routes>
+                </main>
+            </div>
+        </Router>
     );
 };
 
