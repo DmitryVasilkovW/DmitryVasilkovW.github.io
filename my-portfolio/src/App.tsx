@@ -7,6 +7,8 @@ import HomePage from './pages/HomePage';
 import AboutPage from "./pages/AboutPage";
 import './styles/App.css'
 import LanguageChart from "./components/LanguageChart";
+import ProjectDetailsPage from "./components/ProjectDetailsPage";
+import ProjectsPage from "./pages/ProjectsPage";
 
 const App: React.FC = () => {
     const [language, setLanguage] = useState<string>('en');
@@ -61,7 +63,8 @@ const App: React.FC = () => {
                         }>
 
                         </Route>
-                        {/*<Route path="/projects" element={<ProjectsPage language={language}/>}/>*/}
+                        <Route path="/projects" element={<ProjectsPage language={language} />}/>
+                        <Route path="/projects/:projectId" element={<ProjectDetailsPage language={language} />} />
                         {/*<Route path="/contact" element={<ContactPage language={language}/>}/>*/}
                     </Routes>
                 </main>
