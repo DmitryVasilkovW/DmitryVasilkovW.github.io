@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import { Bar, Pie } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
@@ -20,11 +20,18 @@ const fetchGitHubData = async (username: string): Promise<LanguageStats> => {
 
     const languageCounts: LanguageStats = {};
     for (const repo of repos) {
+        // Игнорировать форки
+        if (repo.fork) {
+            continue;
+        }
+
         const languageResponse = await axios.get(repo.languages_url);
         const languages: Record<string, number> = languageResponse.data;
 
         for (const [language, count] of Object.entries(languages)) {
-            languageCounts[language] = (languageCounts[language] || 0) + (count as number);
+            if (language !== 'Jupyter Notebook') {
+                languageCounts[language] = (languageCounts[language] || 0) + (count as number);
+            }
         }
     }
     return languageCounts;
@@ -34,7 +41,7 @@ const LanguageChart: React.FC<LanguageChartProps> = ({ username }) => {
     const [barChartData, setBarChartData] = useState<any>(null);
     const [pieChartData, setPieChartData] = useState<any>(null);
 
-    const updateChartData = async () => {
+    const updateChartData = useCallback(async () => {
         try {
             const languageCounts = await fetchGitHubData(username);
             let totalLines = 0;
@@ -72,7 +79,7 @@ const LanguageChart: React.FC<LanguageChartProps> = ({ username }) => {
         } catch (error) {
             console.error('Error fetching data', error);
         }
-    };
+    }, [username]);
 
     useEffect(() => {
         const storedData = localStorage.getItem(`github_data_${username}`);
@@ -124,12 +131,12 @@ const LanguageChart: React.FC<LanguageChartProps> = ({ username }) => {
         }, 8 * 60 * 60 * 1000); // 8 hours
 
         return () => clearInterval(intervalId);
-    }, [username]);
+    }, [username, updateChartData]);
 
     return (
         <div>
             {barChartData && (
-                <div style={{ width: '100%', height: '600px', marginBottom: '100px' }}>
+                <div style={{ width: '1200px', height: '600px', marginBottom: '100px' }}>
                     <Bar
                         data={barChartData}
                         options={{
