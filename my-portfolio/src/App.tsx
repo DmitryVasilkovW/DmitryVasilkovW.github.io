@@ -6,6 +6,9 @@ import LanguageSelector from './components/LanguageSelector';
 import HomePage from './pages/HomePage';
 import AboutPage from "./pages/AboutPage";
 import './styles/App.css'
+import LanguageChart from "./components/LanguageChart";
+import ProjectDetailsPage from "./components/ProjectDetailsPage";
+import ProjectsPage from "./pages/ProjectsPage";
 
 const App: React.FC = () => {
     const [language, setLanguage] = useState<string>('en');
@@ -29,8 +32,9 @@ const App: React.FC = () => {
                             <li><Link to="/about" className="App-link">{translations[language].about}</Link></li>
                             <li><Link to="/projects" className="App-link">{translations[language].projects}</Link></li>
                             <li><Link to="/contact" className="App-link">{translations[language].contact}</Link></li>
+                            <li><Link to="/statistic" className="App-link">{translations[language].statistic}</Link></li>
                         </ul>
-                        <LanguageSelector setLanguage={setLanguage} />
+                        <LanguageSelector setLanguage={setLanguage}/>
                     </nav>
                 </header>
                 <main>
@@ -52,7 +56,15 @@ const App: React.FC = () => {
                                 personal={aboutTranslations[language]['personal']}
                             />
                         }/>
-                        {/*<Route path="/projects" element={<ProjectsPage language={language}/>}/>*/}
+                        <Route path="/statistic" element={
+                            <LanguageChart
+                                username="DmitryVasilkovW"
+                            />
+                        }>
+
+                        </Route>
+                        <Route path="/projects" element={<ProjectsPage language={language} />}/>
+                        <Route path="/projects/:projectId" element={<ProjectDetailsPage language={language} />} />
                         {/*<Route path="/contact" element={<ContactPage language={language}/>}/>*/}
                     </Routes>
                 </main>

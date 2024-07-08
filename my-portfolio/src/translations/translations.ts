@@ -5,6 +5,7 @@ interface Translations {
         projects: string;
         contact: string;
         welcome: string;
+        statistic:string;
         "about-title": string;
         "about-text": string;
         "projects-title": string;
@@ -20,6 +21,7 @@ const translations: Translations = {
         projects: "Projects",
         contact: "Contact",
         welcome: "Welcome to my portfolio",
+        statistic: "Statistics",
         "about-title": "About Me",
         "about-text": "I am a web developer with experience in creating dynamic and responsive websites.",
         "projects-title": "Projects",
@@ -32,6 +34,7 @@ const translations: Translations = {
         projects: "Проекты",
         contact: "Контакты",
         welcome: "Добро пожаловать в мое портфолио",
+        statistic:"Статистика",
         "about-title": "Обо мне",
         "about-text": "Я веб-разработчик с опытом создания динамических и адаптивных веб-сайтов.",
         "projects-title": "Проекты",
