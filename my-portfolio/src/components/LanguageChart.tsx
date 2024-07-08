@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Bar, Pie } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
 import { CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
+import '../styles/LanguageChart.css';
 
 Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 
@@ -37,6 +38,11 @@ const fetchGitHubData = async (username: string): Promise<LanguageStats> => {
     return languageCounts;
 };
 
+const sortLanguages = (languageCounts: LanguageStats) => {
+    const sortedEntries = Object.entries(languageCounts).sort(([, a], [, b]) => b - a);
+    return Object.fromEntries(sortedEntries);
+};
+
 const LanguageChart: React.FC<LanguageChartProps> = ({ username }) => {
     const [barChartData, setBarChartData] = useState<any>(null);
     const [pieChartData, setPieChartData] = useState<any>(null);
@@ -44,15 +50,16 @@ const LanguageChart: React.FC<LanguageChartProps> = ({ username }) => {
     const updateChartData = useCallback(async () => {
         try {
             const languageCounts = await fetchGitHubData(username);
+            const sortedLanguageCounts = sortLanguages(languageCounts);
             let totalLines = 0;
-            Object.values(languageCounts).forEach((count) => totalLines += count as number);
+            Object.values(sortedLanguageCounts).forEach((count) => totalLines += count as number);
 
             const barData = {
-                labels: Object.keys(languageCounts),
+                labels: Object.keys(sortedLanguageCounts),
                 datasets: [
                     {
                         label: 'Lines of Code',
-                        data: Object.values(languageCounts) as number[],
+                        data: Object.values(sortedLanguageCounts) as number[],
                         backgroundColor: 'rgba(75, 192, 192, 0.6)',
                         borderColor: 'rgba(75, 192, 192, 1)',
                         borderWidth: 1,
@@ -61,12 +68,12 @@ const LanguageChart: React.FC<LanguageChartProps> = ({ username }) => {
             };
 
             const pieData = {
-                labels: Object.keys(languageCounts),
+                labels: Object.keys(sortedLanguageCounts),
                 datasets: [
                     {
                         label: 'Percentage of Code',
-                        data: (Object.values(languageCounts) as number[]).map(count => (count / totalLines) * 100),
-                        backgroundColor: Object.keys(languageCounts).map((_, index) => `hsla(${index * 360 / Object.keys(languageCounts).length}, 100%, 50%, 0.6)`),
+                        data: (Object.values(sortedLanguageCounts) as number[]).map(count => (count / totalLines) * 100),
+                        backgroundColor: Object.keys(sortedLanguageCounts).map((_, index) => `hsla(${index * 360 / Object.keys(sortedLanguageCounts).length}, 100%, 50%, 0.6)`),
                     },
                 ],
             };
@@ -74,7 +81,7 @@ const LanguageChart: React.FC<LanguageChartProps> = ({ username }) => {
             setBarChartData(barData);
             setPieChartData(pieData);
 
-            const dataToStore = { languageCounts, timestamp: Date.now() };
+            const dataToStore = { languageCounts: sortedLanguageCounts, timestamp: Date.now() };
             localStorage.setItem(`github_data_${username}`, JSON.stringify(dataToStore));
         } catch (error) {
             console.error('Error fetching data', error);
@@ -90,15 +97,16 @@ const LanguageChart: React.FC<LanguageChartProps> = ({ username }) => {
             const isValid = age < 8 * 60 * 60; // 8 hours
 
             if (isValid) {
+                const sortedLanguageCounts = sortLanguages(languageCounts);
                 let totalLines = 0;
-                (Object.values(languageCounts) as number[]).forEach((count: number) => totalLines += count);
+                (Object.values(sortedLanguageCounts) as number[]).forEach((count: number) => totalLines += count);
 
                 const barData = {
-                    labels: Object.keys(languageCounts),
+                    labels: Object.keys(sortedLanguageCounts),
                     datasets: [
                         {
                             label: 'Lines of Code',
-                            data: Object.values(languageCounts) as number[],
+                            data: Object.values(sortedLanguageCounts) as number[],
                             backgroundColor: 'rgba(75, 192, 192, 0.6)',
                             borderColor: 'rgba(75, 192, 192, 1)',
                             borderWidth: 1,
@@ -107,12 +115,12 @@ const LanguageChart: React.FC<LanguageChartProps> = ({ username }) => {
                 };
 
                 const pieData = {
-                    labels: Object.keys(languageCounts),
+                    labels: Object.keys(sortedLanguageCounts),
                     datasets: [
                         {
                             label: 'Percentage of Code',
-                            data: (Object.values(languageCounts) as number[]).map((count: number) => (count / totalLines) * 100),
-                            backgroundColor: Object.keys(languageCounts).map((_, index) => `hsla(${index * 360 / Object.keys(languageCounts).length}, 100%, 50%, 0.6)`),
+                            data: (Object.values(sortedLanguageCounts) as number[]).map((count: number) => (count / totalLines) * 100),
+                            backgroundColor: Object.keys(sortedLanguageCounts).map((_, index) => `hsla(${index * 360 / Object.keys(sortedLanguageCounts).length}, 100%, 50%, 0.6)`),
                         },
                     ],
                 };
@@ -136,7 +144,7 @@ const LanguageChart: React.FC<LanguageChartProps> = ({ username }) => {
     return (
         <div>
             {barChartData && (
-                <div style={{ width: '1200px', height: '600px', marginBottom: '100px' }}>
+                <div className="bar-chart-container">
                     <Bar
                         data={barChartData}
                         options={{
@@ -159,7 +167,7 @@ const LanguageChart: React.FC<LanguageChartProps> = ({ username }) => {
                 </div>
             )}
             {pieChartData && (
-                <div style={{ width: '100%', height: '600px', marginBottom: '20px' }}>
+                <div className="pie-chart-container">
                     <Pie
                         data={pieChartData}
                         options={{
